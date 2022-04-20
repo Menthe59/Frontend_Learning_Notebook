@@ -35,4 +35,53 @@ css的相关内容和速查手册
     >           }
     >```  
     在MDN的CSS reference页面[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference)可以对css属性进行查询。  
-- 
+- css由许多模块组成，可以在MDN[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Backgrounds_and_Borders)上浏览各模块的参考内容，包括模块的用法、属性、特征等，或在CSS Specification[🖱🔗](https://www.w3.org/TR/2011/REC-CSS2-20110607/#minitoc)中查找，这里有css相关规范。  
+
+### 04 如何使用CSS  
+
+- 使用css的方法有三种：最常用的是在同文件夹下创建style.css文件并在HTML的开头链接css，这里主要介绍这种方法；其余两种方法都会将css写入HTML标签。  
+- 当在某个HTML页面中使用style.css文件时，需要在HTML的`<haed>`标签中加入如下代码：  
+    >```
+    ><link rel="stylesheet" href="style.css">
+    >```
+    在`<link>`标签中，属性rel让浏览器知道css文档的存在，并利用属性href寻找css文件的位置。  
+- 前文的例子里使用选择器p将所有段落设置为黑色，也可以使用逗号将不同选择器隔开，达到一次可以使用多个选择器的目的，例如；  
+    >```
+    >   p,li{
+    >       color: green;
+    >       }
+    >```
+    以上代码可以将所有段落与列表变为绿色。  
+- 如果要为每个元素设置不同的样式，可以通过给HTML元素加类名，再选中类名的方式实现。例如，使用将列表的第二项设置为橙色并将字体加粗。  
+    >   HTML部分，给列表第二项添加属性class：
+    >```
+    >   <ul>
+    >       <li>项目一</li>
+    >       <li class="test">项目二</li>
+    >       <li>项目三</li>
+    >   </ul>
+    >```
+    >
+    >   css部分，在选择器开头添加“ . ”，来选择test类：
+    >```
+    >   .test{
+    >       color: orange;
+    >       font-weight:bold;
+    >       }
+    >```  
+- 也可以为每个某项类的某个元素添加效果，例如“选中每个test类的li元素”：  
+    >```
+    >   li.test{
+    >        color: orange;
+    >        font-weight: bold;
+    >       }
+    >```
+    这时大括号内的属性将不再作用于其他元素标签，如果想要同时对其他元素标签产生作用，只需要将其添加并且用逗号隔开即可：  
+    >```
+    >   li.test,
+    >   span.test {
+    >       color: orange;
+    >       font-weight: bold;
+    >       }
+    >```
+    这样可以达到将一个类属性应用到多个多个元素的目的，不用每添加一个类就修改一次css文件，只需要着重关注类即可。
