@@ -37,7 +37,52 @@ css的相关内容和速查手册
     在MDN的CSS reference页面[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Reference)可以对css属性进行查询。  
 - css由许多模块组成，可以在MDN[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Backgrounds_and_Borders)上浏览各模块的参考内容，包括模块的用法、属性、特征等，或在CSS Specification[🖱🔗](https://www.w3.org/TR/2011/REC-CSS2-20110607/#minitoc)中查找，这里有css相关规范。  
 
-### 04 如何使用CSS  
+### 04 在HTML里应用CSS  
+前文提到在HTML中应用css的三种方法： 
+- 外部样式表，即将css编写在扩展名为.css 的单独文件中，并从HTML`<link>`元素进行引用。  
+- 内部样式，即不使用外部CSS文件，而是将CSS放在HTML文件`<head>`标签里的`<style>`标签之中。  
+    >```
+    >   <!DOCTYPE html>
+    >   <html>
+    >       <head>
+    >       <meta charset="utf-8">
+    >       <title>My CSS experiment</title>
+    >       <style>
+    >         h1 {
+    >               color: blue;
+    >               background-color: yellow;
+    >               border: 1px solid black;
+    >             }
+    >
+    >         p {
+    >               color: red;
+    >             }
+    >       </style>
+    >       </head>
+    >   <body>
+    >   <h1>Hello World!</h1>
+    >   <p>This is my first CSS example</p>
+    >   </body>
+    >   </html>
+    >```
+- 内联样式，即存在于HTML元素的style属性之中，其特点是每个CSS表只影响一个元素：  
+    >```
+    >   <!DOCTYPE html>
+    >       <html>
+    >         <head>
+    >           <meta charset="utf-8">
+    >           <title>My CSS experiment</title>
+    >         </head>
+    >     <body>
+    >       <h1 style="color: blue;background-color: yellow;border: 1px solid black;">Hello World!</h1>
+    >       <p style="color:red;">This is my first CSS example</p>
+    >     </body>
+    >   </html>
+    >```
+    但尽量不要使用这种方法，因为难以维护。
+
+
+### 05 如何使用CSS  
 
 - 使用css的方法有三种：最常用的是在同文件夹下创建style.css文件并在HTML的开头链接css，这里主要介绍这种方法；其余两种方法都会将css写入HTML标签。  
 - 当在某个HTML页面中使用style.css文件时，需要在HTML的`<haed>`标签中加入如下代码：  
@@ -131,4 +176,46 @@ css的相关内容和速查手册
     >       padding: 5px;
     >       }
     >```
-    上面的代码为以下元素建立样式：在`<body>`之内，紧接在`<h1>`后面的`<p>`元素的内部，类名为 test。
+    上面的代码为以下元素建立样式：在`<body>`之内，紧接在`<h1>`后面的`<p>`元素的内部，类名为 test。  
+
+### 06 CSS规则  
+
+- 两个选择器可以选择相同HTML元素，担当两条规则对某一个元素都适用的时候，CSS有 _级联规则和专用规则_ 来控制在发生碰撞时哪条规则将获胜。  
+- 在最基本的层面上，CSS由属性和值两个组成部分组成：  
+    * 属性：人类可读的标识符，指示您想要更改的样式特征(例如`font-size`, `width`, `background-color`) 你想改变。  
+    * 值：每个指定的属性都有一个值，该值指示您希望如何更改这些样式特性,例如，要将字体、宽度或背景色更改为何种形式。  
+- 虽然大多数值是相对简单的关键字或数值，但也有一些可能的值以函数的形式出现。一个例子是`calc()`函数。这个函数允许在CSS中进行简单的计算，例如：  
+    >```
+    >   <div class="outer">
+    >       <div class="box">The inner box is 90% - 30px.</div>
+    >   </div>
+    >
+    >   .outer {
+    >       border: 5px solid black;
+    >           }
+    >
+    >   .box {
+    >       padding: 10px;
+    >       width: calc(90% - 30px);
+    >       background-color: rebeccapurple;
+    >       color: white;
+    >         }
+    >```
+- @规则：`@rules` (pronounced "at-rules"). 这是一些特殊的规则，为 CSS提供了一些关于如何表现的指导。 有些 `@rules` 规则很简单，有规则名和值。例如，要将额外的样式表导入主CSS样式表，可以使用`@import`:
+    >```
+    >   @import 'styles2.css';
+    >```
+    最常见的 `@rules` 之一是`@media`，它允许使用 _媒体查询_ 来应用CSS，仅当某些条件成立,例如，当屏幕分辨率高于某一数量，或屏幕宽度大于某一宽度时。
+    在下面的 CSS中，我们将给 `<body>` 元素一个粉红色的背景色。但是，我们随后使用`@media`创建样式表的一个部分，该部分仅适用于视口大于30em的浏览器。如果浏览器的宽度大于30em，则背景色将为蓝色。
+    >```
+    >   body {
+    >       background-color: pink;
+    >       }
+    >
+    >   @media (min-width: 30em) {
+    >       body {
+    >   background-color: blue;
+    >           }
+    >   }
+    >```
+    之后会遇到一些其他的规则`@rules`。
