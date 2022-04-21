@@ -219,3 +219,42 @@ css的相关内容和速查手册
     >   }
     >```
     之后会遇到一些其他的规则`@rules`。
+- 速记属性，一些属性，如 `font`, `background`, `padding`, `border`, `margin` 等属性称为速记属性,这是因为这些属性允许在一行中设置多个属性值，从而节省时间并使代码更整洁。  
+    例如，这一行代码：
+    >```
+    >   padding: 10px 15px 15px 5px;
+    >```
+    >
+    与这四行代码是等价的：
+    >```
+    >   padding-top: 10px;
+    >   padding-right: 15px;
+    >   padding-bottom: 15px;
+    >   padding-left: 5px;
+    >```         
+    这一行：
+    >```
+    >   background: red url(bg-graphic.png) 10px 10px repeat-x fixed;
+    >```
+    与这五行代码是等价的：
+    >```
+    >   background-color: red;
+    >   background-image: url(bg-graphic.png);
+    >   background-position: 10px 10px;
+    >   background-repeat: repeat-x;
+    >   background-attachment: fixed;
+    >```
+    可以查找CSS参考中的速记属性名称，以查找更多内容。  
+- CSS中的注释以`/*`开头，以`*/`结尾。编写css时可以通过空格tab等增加可读性，但属性和值之间的空格需要格外注意。  
+    例如，以下声明是有效的CSS：
+    >```
+    >   margin: 0 auto;
+    >   padding-left: 10px;
+    >```
+    以下内容无效：
+    >```
+    >margin: 0auto;
+    >padding- left: 10px;
+    >```  
+
+### 07 CSS如何运行  
