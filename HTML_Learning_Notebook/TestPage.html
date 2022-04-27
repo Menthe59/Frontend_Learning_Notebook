@@ -61,5 +61,113 @@
         <font size="10" color="red">此行增加的size属性为10,color的属性为red</font><br>
         <font size="5">但目前这种通过标签对文本进行修饰的方式已经过时，现在通常使用css</font>
     </p>
+    <p>
+        当需要插入一些内容时，我们使用a标签，在这个标签的href属性中添加所要跳转的链接，<br>
+        例如下方图表点击即可跳转至w3c<br>
+        <a href="https://www.w3school.com.cn/">🔗</a><br>
+        href标签也可以添加属性，例如令链接在新窗口打开的targe="_blank",target的默认属性是self即在当前页面打开:<br>
+        <a href="https://www.w3school.com.cn/" target="_blank">🔗</a><br>
+        a标签还具备锚点功能，具体用法为，在本段，先写入一个href属性，值为#+某个值的a标签，例如#testOfHref:<br>
+        <a href="#testOfHref">锚定处</a><br>
+        在锚点终点处放置属性为name,相同值的a标签，这里设定一段间隔文字查看效果：<br>
+    </p>
+    <p>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+        #<br>
+    </p>
+    <p>
+        <a name="testOfHref">锚点终点</a>
+        锚点终点处a标签也可以使用id属性。<br>
+    </p>
+    <p>
+        a标签还可以调出邮件mailto和电话telto的功能。<br>
+        分别在href属性中添加值mailto:xxx，tel:xxx即可<br>
+        <a href="mailto:xxx@xxx.com">点击打开邮箱联系我</a><br>
+        <a href="tel:19800000000">点击在手机上呼出拨号键盘联系我</a><br>
+    </p>
+    <h4>下面介绍列表标签，列表有几种不同的书写方式，这里用到的ul、li标签都是独占一行的：</h4>
+    <ul>
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+        <li>第四项</li>
+        <li>第五项</li>
+        <li>第六项</li>
+    </ul>
+    <h4>ul可以添加type属性，改变列表每项图形例如type="square"是方形，type="circle"是空心圆</h4>
+    <ul type="square">
+        <li>方形第一项</li>
+        <li>方形第二项</li>
+    </ul>  
+    <ul type="circle">
+        <li>空心圆第一项</li>
+        <li>空心圆第二项</li>
+    </ul> 
+    <h4>还有一种ol标签，可以自动对列表内容进行排序：</h4>
+    <ol>
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+        <li>第四项</li>
+        <li>第五项</li>
+        <li>第六项</li>
+    </ul>
+    <br>
+
+    <h4>ol标签同样可以添加type属性改变排序方式，默认为使用数字即type="1",如果使用字母排序，则为type="A",小写、罗马数字同理：</h4>
+    <ol type="A">
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+        <li>第四项</li>
+        <li>第五项</li>
+        <li>第六项</li>
+    </ul>
+    <h4>还有一种列表是定义列表，即最外层为dl标签，内层列表项为dt,解释（定义项）为dd</h4>
+    <dl>
+        <dt>
+            第一项
+        </dt>
+        <dd>
+            第一项定义第一条
+        </dd>
+        <dd>
+            第一项定义第二条
+        </dd>
+        <dt>
+            第二项
+        </dt>
+        <dd>
+            第二项定义
+        </dd>
+        <dt>
+            第三项
+        </dt>
+        <dd>
+            第三项定义
+        </dd>
+    </dl>
+    <h4>同样的，li标签中也可以嵌套ol标签，可以套娃。</h4>
+    
 </body>
 </html>
