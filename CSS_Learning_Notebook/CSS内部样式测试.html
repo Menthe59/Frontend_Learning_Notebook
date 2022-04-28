@@ -14,6 +14,15 @@
         .innerTest2{
             background-color: pink;
         }
+        div{
+            border: 5px dotted blue;
+            /*
+            与下述写法效果相同：
+            border-color:blue;
+            border-width:5px;
+            border-style:dashed;
+            */
+        }
     </style>
     <title>css属性测试</title>
 </head>
@@ -29,6 +38,7 @@
     <div class="innerTest2">
         此div设定为背景颜色为粉色,字体颜色默认。<br>
         "#"称为id选择器，"."称为class选择器。还有“标签选择器”，可以直接对某一类标签添加效果，写法为div{}。<br>
+        例如，为现有的三个div添加宽度5px的蓝色点阵边框，这三个属性可以分开写也可以一次写完。<br>
     </div>
 </body>
 </html>

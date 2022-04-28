@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css外部样式测试t</title>
+    <!--这里要注意路径问题，如果将css放入css文件夹内，则href="css/csstest.css"-->
+    <link href="csstest.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="innerTest">
+        这是一个测试盒子，id为innerTest,用于测试内部样式，将内部字体变为蓝色。<br>
+    </div>
+    <div class="innerTest1 innerTest2">
+        为这个div添加粉色背景，同时让字体显示为红色。<br>
+    </div>
+    <div class="innerTest2">
+        此div设定为背景颜色为粉色,字体颜色默认。<br>
+    </div>
+</body>
+</html>
