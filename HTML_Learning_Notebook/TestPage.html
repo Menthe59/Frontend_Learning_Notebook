@@ -168,6 +168,161 @@
         </dd>
     </dl>
     <h4>同样的，li标签中也可以嵌套ol标签，可以套娃。</h4>
-    
+    <h4>如果要创建表格，可以使用table标签,其中,行使用tr标签，行中每个元素使用td标签</h4>
+    <table>
+        <tr>
+            <td>第一行第一项（列）</td>
+            <td>第一行第二项（列）</td>
+            <td>第一行第三项（列）</td>
+        </tr>
+        <tr>
+            <td>第二行第一项（列）</td>
+            <td>第二行第二项（列）</td>
+            <td>第二行第三项（列）</td>
+        </tr>
+        
+        <tr>
+            <td>第三行第一项（列）</td>
+            <td>第三行第二项（列）</td>
+            <td>第三行第三项（列）</td>
+        </tr>
+    </table>
+    <h4>如果在最外层添加属性，比如border="2"，可以为表格在外层增加边框,</h4>
+    <h4>cellspacing="2"可以调节单元格之间的空隙，cellpadding="3"属性可以调节文字与单元格的距离。</h4>
+    <h4>还可以使用被tr标签包裹的th标签增加表头，表头为加粗效果。</h4>
+    <table border="2" cellspacing="2" cellpadding="3">
+        <tr>
+            <th>表头第一项</th>
+            <th>表头第二项</th>
+            <th>表头第三项</th>
+        </tr>
+        <tr>
+            <td>第一行第一项（列）</td>
+            <td>第一行第二项（列）</td>
+            <td>第一行第三项（列）</td>
+        </tr>
+        <tr>
+            <td>第二行第一项（列）</td>
+            <td>第二行第二项（列）</td>
+            <td>第二行第三项（列）</td>
+        </tr>
+        
+        <tr>
+            <td>第三行第一项（列）</td>
+            <td>第三行第二项（列）</td>
+            <td>第三行第三项（列）</td>
+        </tr>
+    </table>
+    <h4>如果想在表头添加标题，可以在table标签内，tr或th标签前，添加caption标签，默认居中</h4>
+    <table border="2" cellspacing="2" cellpadding="3">
+        <caption>表格测试</captain>
+        <tr>
+            <th>表头第一项</th>
+            <th>表头第二项</th>
+            <th>表头第三项</th>
+        </tr>
+        <tr>
+            <td>第一行第一项（列）</td>
+            <td>第一行第二项（列）</td>
+            <td>第一行第三项（列）</td>
+        </tr>
+        <tr>
+            <td>第二行第一项（列）</td>
+            <td>第二行第二项（列）</td>
+            <td>第二行第三项（列）</td>
+        </tr>
+        
+        <tr>
+            <td>第三行第一项（列）</td>
+            <td>第三行第二项（列）</td>
+            <td>第三行第三项（列）</td>
+        </tr>
+    </table> 
+    <h4>如果要合并某两个单元格，例如第二行第一项和第二项，可以删掉某一项，并在另一项的td标签中添加属性colspan="2"</h4>
+    <table border="2" cellspacing="2" cellpadding="3">
+        <caption>表格测试</captain>
+        <tr>
+            <th>表头第一项</th>
+            <th>表头第二项</th>
+            <th>表头第三项</th>
+        </tr>
+        <tr>
+            <td>第一行第一项（列）</td>
+            <td>第一行第二项（列）</td>
+            <td>第一行第三项（列）</td>
+        </tr>
+        <tr>
+            <td colspan="2">第二行第一项（列）</td>
+            <td>第二行第三项（列）</td>
+        </tr>
+        
+        <tr>
+            <td>第三行第一项（列）</td>
+            <td>第三行第二项（列）</td>
+            <td>第三行第三项（列）</td>
+        </tr>
+    </table> 
+    <h4>纵向合并两个单元格时使用rowspan</h4>
+    <table border="2" cellspacing="2" cellpadding="3">
+        <caption>表格测试</captain>
+        <tr>
+            <th>表头第一项</th>
+            <th>表头第二项</th>
+            <th>表头第三项</th>
+        </tr>
+        <tr>
+            <td>第一行第一项（列）</td>
+            <td>第一行第二项（列）</td>
+            <td>第一行第三项（列）</td>
+        </tr>
+        <tr>
+            <td colspan="2">第二行第一项（列）</td>
+            <td rowspan="2">第二行第三项（列）</td>
+        </tr>
+        
+        <tr>
+            <td>第三行第一项（列）</td>
+            <td>第三行第二项（列）</td>
+        </tr>
+    </table> 
+    <h4>table也可以使用bgcolor属性添加背景颜色，具体颜色自行搜索</h4>
+    <h4>table标签还可以分为三部分：thead、tfoot、tbody，分别用来放表头、表尾、主要部分</h4>
+    <h4>在这三个标签里依旧放置tr和td标签，但thead、tfoot、tbody标签的先后顺序不会影响最终渲染在页面上的顺序</h4>
+    <h4>更大的作用类似与页眉页脚，可以规范表格格式</h4>
+    <h4>table可以进行嵌套，td里也可以有table，可以套娃，甚至用于页面布局。</h4>
+    <h4>使用img标签可以使用添加照片，img为单标签可以添加相关属性，可以添加本地照片或者添加图片地址</h4>
+    <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"/>
+    <p>
+        可以使用form来创建表单，并在其中放置input作为填充框，input标签也可以有不同属性完成相关功能，例如使用type属性的submit值来实现提交框。<br>
+        一般会为账号和密码框添加name和type的属性，方便提交，密码框type设定为password时可以实现密码不可见功能。<br>
+        在form标签添加action属性设定提交位置，method属性指定提交方法，method属性默认值为get。<br>
+    </p>
+    <h3>表单测试</h3>
+    <form action="https://www.baidu.com" method="post">
+        账号：<input name="username" type="text" /> <br>
+        密码：<input name="userpsw" type="password" /> <br>
+        <input type="submit">
+    </form>
+    <p>
+        想要实现点击“账号”、“密码”即可实现光标跟随的效果，可以将input标签放入label双标签内，给密码的input框添加id。<br>
+        label标签有两个属性，value可以显示账号框默认值，placeholder属性可以提示输入。具体情况请检查下方表单测试代码。<br>
+    </p>
+    <h3>表单测试</h3>
+    <form action="https://www.baidu.com" method="post">
+        <label for="username">账号：</label> 
+        <input id="username" name="username" type="text" placeholder="请输入密码" /> <br>
+        <label>
+        密码：<input id="password" name="userpsw" type="password" placeholder="请输入账号" /> <br>
+        </label>
+        <input type="submit" value="登录">
+    </form>
+    <p>
+        提交/登录标签还可以使用登录按钮，即button标签，但针对不同的浏览器，提交情况不同。<br>
+        button有type属性，当type="submit"点击时会提交button所在的form表单。<br>
+    </p>
+    <button>这里是一个按钮</button>
+    <p>
+        如果想将表单提交到特定位置，需要在form的action中进行设置。<br>
+    </p>
 </body>
 </html>
