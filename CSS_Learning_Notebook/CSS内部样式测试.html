@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #innerTest{
+            color: blue;
+        }
+        .innerTest1{
+            color: red;
+        }
+        .innerTest2{
+            background-color: pink;
+        }
+    </style>
+    <title>css属性测试</title>
+</head>
+<body>
+    <div id="innerTest">
+        这是一个测试盒子，id为innerTest,用于测试内部样式，将内部字体变为蓝色。一般来说不使用这种方法。<br>
+        当想让一个元素显示两种css属性时，可以在class用空格隔开两个.后的名称。<br>
+    </div>
+    <div class="innerTest1 innerTest2">
+        id最好在整个页面中唯一，当想为同一类元素/div设置同种样式时，只需给标签添加相同class属性，并且在style内用“.”引用。<br>
+        例如为这个div添加粉色背景，同时让字体显示为红色。<br>
+    </div>
+    <div class="innerTest2">
+        此div设定为背景颜色为粉色,字体颜色默认。<br>
+        "#"称为id选择器，"."称为class选择器。还有“标签选择器”，可以直接对某一类标签添加效果，写法为div{}。<br>
+    </div>
+</body>
+</html>
