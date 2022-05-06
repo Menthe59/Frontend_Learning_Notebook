@@ -31,10 +31,19 @@
     <p>我刚才随机选定了一个100以内的自然数。看你能否在 10 次以内猜中它。每次我都会告诉你所猜的结果是高了还是低了。</p>
 
     <div class="form">
-        <label for="guessField">请猜数：</label><input type="text" id="guessField" class="guessField">
+        <!--
+            接下来的两个常量存储对表单文本输入和提交按钮的引用，
+            并用于控制以后提交猜测
+        -->
+        <label for="guessField">请猜数：</label>
+        <input type="text" id="guessField" class="guessField">
         <input type="submit" value="我猜" class="guessSubmit">
     </div>
 
+    <!--
+        下面的三个常量均存储着一个引用，分别指向HTML段落中某个元素，
+        用于在代码后面段落中插入值
+    -->
     <div class="resultParas">
         <p class="guesses"></p>
         <p class="lastResult"></p>
@@ -42,33 +51,57 @@
     </div>
 
     <script>
+        //设置存储数据的变量和常量
         let randomNumber = Math.floor(Math.random() * 100) + 1;
         const guesses = document.querySelector('.guesses');
         const lastResult = document.querySelector('.lastResult');
         const lowOrHi = document.querySelector('.lowOrHi');
         const guessSubmit = document.querySelector('.guessSubmit');
         const guessField = document.querySelector('.guessField');
+        //倒数第二个变量存储一个计数器并初始化为 1（用于跟踪玩家猜测的次数），
+        //最后一个变量存储对重置按钮的引用
         let guessCount = 1;
         let resetButton;
 
         function checkGuess() {
+            //声明一个名为 userGuess 的变量并将其设置为在文本字段中输入的值
+            //并对这个值应用内置的 Number() 方法，确保该值是一个数字
             let userGuess = Number(guessField.value);
+            //比较测试的是 guessCount 变量是否等于1，即玩家是不是第一次猜数字
+            //如果是，让guess段落的文本等于“上次猜的内容”，不是就不用了
             if (guessCount === 1) {
                 guesses.textContent = '上次猜的数：';
             }
 
+            //将当前 userGuess 值附加到 guesses 段落的末尾，
+            //并加上一个空格，以使每两个猜测值之间有一个空格
             guesses.textContent += userGuess + ' ';
 
+
+            /**
+             * 检查用户的猜测是否等于在代码顶端设置的 randomNumber 值。
+             * 如果是，则玩家猜对了，游戏胜利，将向玩家显示一个漂亮的绿色的祝贺信息，
+             * 并清除“高了 / 低了”信息框的内容，调用 setGameOver() 方法。
+             */
             if (userGuess === randomNumber) {
                 lastResult.textContent = '恭喜你！猜对了！';
                 lastResult.style.backgroundColor = 'green';
                 lowOrHi.textContent = '';
                 setGameOver();
-            } else if (guessCount === 10) {
+            }
+            /**
+             * 检查这个回合是否是玩家的最后一个回合。如果是，程序将做与前一个程序块相同的事情，只是这次它显示的是 Game Over 而不是祝贺消息。
+             */
+            else if (guessCount === 10) {
                 lastResult.textContent = '!!!游戏结束!!!';
                 lowOrHi.textContent = '';
                 setGameOver();
-            } else {
+            }
+            /**
+             * 前两个比较都不返回 true 时（也就是玩家尚未猜对，但是还有机会）才会执行这里的代码。
+             * 在这个情况下，我们会告诉玩家他们猜错了，并执行另一个条件测试，判断并告诉玩家猜测的数字是高了还是低了。
+             */
+            else {
                 lastResult.textContent = '你猜错了！';
                 lastResult.style.backgroundColor = 'red';
                 if (userGuess < randomNumber) {
@@ -83,8 +116,15 @@
             guessField.focus();
         }
 
+        //事件监听器
         guessSubmit.addEventListener('click', checkGuess);
 
+        /**
+         * 前两行通过将 disable 属性设置为 true 来禁用表单文本输入和按钮。
+         * 这样做是必须的，否则用户就可以在游戏结束后提交更多的猜测，游戏的规则将遭到破坏。
+         * 接下来的三行创建一个新的  <button> 元素，设置它的文本为“开始新游戏”，并把它添加到当前 HTML 的底部。
+         * 最后一行在新按钮上设置了一个事件监听器，当它被点击时，一个名为 resetGame() 的函数被将被调用。
+         */
         function setGameOver() {
             guessField.disabled = true;
             guessSubmit.disabled = true;
@@ -94,6 +134,14 @@
             resetButton.addEventListener('click', resetGame);
         }
 
+        /**
+         * 将 guessCount 重置为 1。
+         * 清除所有信息段落。
+         * 删除重置按钮。
+         * 启用表单元素，清空文本域并聚焦于此，准备接受新猜测的数字。
+         * 删除 lastResult 段落的背景颜色。
+         * 生成一个新的随机数，这样就可以猜测新的数字了！
+         */
         function resetGame() {
             guessCount = 1;
             const resetParas = document.querySelectorAll('.resultParas p');
