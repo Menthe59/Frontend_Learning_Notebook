@@ -10,3 +10,36 @@
 [defname]{
     background-color: aqua;
 }
+
+.leftwords{
+    border: 1px solid red;
+    width: 200px;
+    height: 100px;
+
+    float: left;
+}
+
+.rightwords{
+    border: 1px solid red;
+    width: 200px;
+    height: 100px;
+
+    float: left;
+
+}
+
+.margintest1{
+    border: 1px solid red;
+    width: 200px;
+    height: 100px;
+
+    float: left;
+}
+
+.margintest2{
+    border: 1px solid red;
+    width: 200px;
+    height: 100px;
+
+    float: left;
+}

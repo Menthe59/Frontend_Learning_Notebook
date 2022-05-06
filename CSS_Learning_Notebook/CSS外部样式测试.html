@@ -59,5 +59,31 @@
         </table> 
         <h4>例如，span不是块级，所以其宽度是依据内容多少而定，或者必须设定span为block才可以设置宽度，宽度才会有效。</h4>
     </div>
+    <div>
+        浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。<br>
+        由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。<br>
+        关于浮动的一个说法，“浮动的元素都是块级的”,下面对浮动属性进行测试，下面分别新建两个div，class分别设定为leftwords和rightwords,<br>
+        在添加两个测试基准div，分别设定属性为maigintest1和margintest2，先将他们的float属性都改为left，<br>
+        可以看到这四个div从左向右依次排开。
+    </div>
+    <div class="leftwords">
+        这是左侧文字
+    </div>
+    <div class="rightwords">
+        这是右侧文字
+    </div>
+    <div class="margintest1">
+        测试基准文字1
+    </div>
+    <div class="margintest2">
+        测试基准文字2
+    </div>
+
+    <div>
+        当把四个div的float属性都设定为right，则会从“左侧文字”、“右侧文字”、“基准文字1”、“基准文字2”的顺序从右往左排列。<br>
+        相关效果可以在<a href="https://www.w3school.com.cn/css/css_positioning_floating.asp">这里</a>查看。
+        <!--具体查看“56.css_1.浮动float、清除浮动clear”-->
+    </div>
+
 </body>
 </html>
