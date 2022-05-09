@@ -56,8 +56,259 @@ JS 相关知识和速查手册
 
   更多详情参考[🖱🔗](https://blog.csdn.net/xingjia001/article/details/84560872)
 
-  - 变量命名时可以使用“小写驼峰命名法”
+  - 变量命名时可以使用“小写驼峰命名法”。
+  - 变量有不同类型，用于存储不同类型数据：  
+    变量名|存储内容  
+    :-:|:-:  
+    number|存储数字  
+    string|字符串，使用单引号或双引号包围
+    boolean|true/false
+    array|数组，数组是一个单个对象
+    object|对象，可以理解为现实生活中的模型的一种代码结构
+  - 需要注意的是, JS 是一种“动态类型语言”，不同于 C 或 Java，JS 不需要指定变量将包含什么数据类型。  
+    例如，如果声明一个变量并给它一个带引号的指，浏览器就会知道这个值是一个字符串：
+
+    > ```
+    >   let myString = 'hello';
+    > ```
+
+    即使包含数字，仍是一个字符串，比如下面的`myNumber`:
+
+    > ```
+    > let myNumber = '500';
+    > //如果想查看某个变量的类型，可以使用typeof,例如：
+    > //typeof myNumber
+    > ```
+
+  - JS 中用来进行运算的基本运算符有：  
+    运算符|名称|作用|实例  
+    :-:|:-:|:-:|:-:  
+    `+`|加法|两个数相加|`6+9`  
+    `-`|减法|从左边减去右边的数|`20-15`  
+    `*`|乘法|两个数相乘|`3*7`  
+    `/`|除法|用右边的数除左边的数|`10/5`  
+    `%`|求余/取模|在你将左边的数分成同右边数字相同的若干整数部分后，返回剩下的余数|`8%3`  
+    `**`|幂|取底数的指数次方，即指数所指定的底数相乘,它在 EcmaScript 2016 中首次引入|`5**5`
+  - 运算符优先级  
+    JavaScript 中的运算符优先级与学校的数学课程相同，即乘法和除法总是先完成，然后是加法和减法（总是从左到右进行计算）。
+  - 赋值运算符  
+    运算符|名称|作用|示例|等价于  
+    :-:|:-:|:-:|:-:|:-:
+    `+=`|加法赋值|右边的数值加上左边的变量，然后再返回新的变量。|`x = 3;x += 4;x = 3;x = x + 4;`
+    `-=`|减法赋值|左边的变量减去右边的数值，然后再返回新的变量。|`x = 6;x -= 3; x = 6;x = x - 3;`
+    `*=`|乘法赋值|左边的变量乘以右边的数值，然后再返回新的变量。|`x = 2;x *= 3; x = 2;x = x * 3;`
+    `/=`|除法赋值|左边的变量除以右边的数值，然后再返回新的变量。|`x = 10;x /= 5;x = 10;x = x / 5;`
+  - 比较运算符  
+    有时，我们将要运行真/假测试，然后根据该测试的结果进行相应的操作。  
+    运算符|名称|作用|示例  
+    :-:|:-:|:-:|:-:  
+    `===`|严格等于|测试左右值是否相同|`5 === 2 + 4`
+    `!==`|严格不等于|测试左右值是否不相同|`5 !== 2 + 3`
+    `<`|小于|测试左值是否小于右值|`10 < 6`
+    `>`|大于|测试左值是否大于右值|`10 > 20`
+    `<=`|小于或等于|测试左值是否小于或等于右值|`3 <= 2`
+    `>=`|大于或等于|测试左值是否大于或等于正确值。|`5 >= 4`
+
+    有时使用`==`和`!=`来判断相等和不相等，这些都是 JavaScript 中的有效运算符，但它们与`===/!==`不同，前者测试值是否相同， 但是数据类型可能不同，而后者的严格版本测试值和数据类型是否相同。 严格的版本往往导致更少的错误，建议您使用更严格的版本。
 
 ### 06 JavaScript 中的字符串和字符串方法
 
+- 在 js 中所有东西都可以被当成对象，例如创建一个字符串：
+
+  > `let string ='This is my string'`
+
+  一旦变量变成字符串对象实例就有大量的原型和方法编辑它，在 string 对象页可以进行查询。[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)  
+  下面介绍一些字符串相关的方法：
+
+- 获得字符串长度：
+
+  > `let browserType = 'mozilla';` > `browserType.length;`
+
+  将会输出 7。
+
+- 检索特定字符串：
+
+  使用方括号表示法返回字符串中的任何字符，即只需要在变量末尾添加方括号，反括号内包含要返回的字符编号，这里要注意的是字符串位置从 0 开始，到 length-1 结束。
+
+  > `browswerType[0];`  
+  > `browserType[browsewType.length-1];`
+
+- 在字符串中查找子字符串并提取：  
+  当要找出一个较小的字符串是否存在于一个较大的字符串中，即一个字符串中尊在一个子字符串，可以使用`indexOf()`方法来实现：
+
+  > `browserType.indexOf('zilla');`
+
+  当输入：
+
+  > `browserType.indexOf('vanilla');`
+
+  会得到`-1`，这是因为在主字符串中找不到子字符串，可以使用如下代码判断是否包含子字符串:
+
+  > ```
+  > if(browserType.indexOf('mozilla')!==-1){
+  >     //do stuff with the string
+  >     }
+  > ```
+
+  当知道字符串的子字符串开始的位置，以及想要结束的字符时，可以用`slice()`进行提取：
+
+  > `broeserType.slice(0,3);`
+
+  这时返回“moz”,第一个参数是开始提取的字符位置，第二个参数是提起的最后一个字符的后一个位置，即提取从第一个位置开始，直到但不包括最后一个位置。
+
+  如果知道某个字符之后提取字符串中的所有剩余字符，则不必包含第二个参数，而只需要包含从中提取的字符位置字符串的其余字符。
+
+  > `browserType.slice(2);`
+
+  这里返回“zilla”。
+
+- 转化大小写：  
+  字符串转换方法`toLowerCase()`和`toUpperCase()`将字符串所有的字符粉笔转换成大写或者小写，这在将数据存储在数据库中之前低所有用户的输入的数据进行规范化非常有用。
+
+  > ```
+  > let radDate = 'My NaMe Is MuD';
+  > radData.toLowerCase();
+  > radData.toUpperCase();
+  > ```
+
+- 替换字符串的某部分：
+
+  使用`replace()`方法将字符串的一个字符串替换为另一个字符串：
+
+  > `browserType.replace('moz','van');`
+
+  这里要注意的是，需要设置一个变量值来接受操作结果：
+
+  > `browserType = browserType.replace('moz','van');`
+
 ### 07 数组
+
+- 简单来说，数组是一个包含了许多值的对象，数组对象可以存储在变量中，并且能用和其他任何类型的值完全相同的方式处理，区别在于可以单独访问列表中的每个值，并使用列表执行一些有用和高效的操作，例如循环会对数组中的每个元素都执行相同的操作。
+
+- 创建数组：数组由方括号构成，其中包含用逗号分隔的元素列表，例如如下购物清单：
+
+  > ```
+  > let shopping = ['bread','milk','cheese','hummus','noodles'];
+  > ```
+
+  在这种情况下数组中的每个项目都是一个字符串，可以将任何类型的元素存储在数组中，例如字符串、数字、对象、另一个变量甚至另一个数组，也可以混合匹配项目类型，他们并不都是数字、字符串等，例如：
+
+  > ```
+  > let sequence = [1,1,2,34,2,5,4];
+  > let random = ['tree',789.[0,1,3]];
+  > ```
+
+- 关于访问和修改字符串，可以使用括号表示法访问数组中的元素，与前文检索特定字符串字符的方法相同，例如：
+
+  > ```
+  > shopping[0];
+  > //returns "bread"
+  > ```
+
+  简单的为单个数组元素提供新值来修改数组中的元素：
+
+  > ```
+  > shopping[0]='tahini';
+  > shopping;
+  > //shopping will now return ["tachi","nlk","cheese","hmmus","nodles"]
+  > ```
+
+  当时数组中包含数组时称之为多维数组，可以通过将两组方括号链接在一起来访问数组内的另一个数组，例如访问`random`数组中的第三个项目：
+
+  > `random[2][2];`
+
+- 关于获取数组长度，可以通过使用`length`属性获取数组长度，这与查找字符串的长度（以字符为单位）完全相同：
+
+  > ```
+  > sequence.length;
+  > ```
+
+  `length`有许多用途，最常用于循环：
+
+  > ```
+  > let sequence = [1,3,45,35,32,34,6];
+  > for(let i = 0; i < sequence.length; i++){
+  >    console.log(sequence[i]);
+  >    //console.log()用于将元素打印到控制台
+  > }
+  > ```
+
+- 一些有用的数组方法
+
+  字符串和数组之间的转换，使用`split()`方法：（这其实是一个字符串方法而不是数组方法）
+
+  > ```
+  > //创建字符串
+  > let myData = 'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle';
+  > //用逗号分割
+  > let myArray = myData.split(',');
+  > myArray;
+  > //检索数组中的项目：
+  > myArray.length;
+  > myArray[0];//the first item in the array
+  > myArray[1];//the second item in the array
+  > myArray[myArray.length-1];//at last item in the array
+  > ```
+
+  使用`join()`方法进行相反的操作：
+
+  > ```
+  > let myNewString = myArray.join(',');
+  > myNewString;
+  > ```
+
+  将数组转换为字符串的另一种方法是使用`toString()`方法，`toString()`可以比`join()`更简单，因为不需要参数，但更有限制，使用`join()`可以指定不同的分隔符：
+
+  > ```
+  > let dogName = ["Rocket","Flash","Bella","Slugger"];
+  > dogNames.toString();
+  > //Rocket,Flash,Bella,Slugger
+  > ```
+
+- 添加和删除数组项，要在数组末尾添加或删除一个项目，可以使用`push()`和`pop()`:
+
+  先使用`push()`,需要添加一个或多个到数组末尾的元素：
+
+  > ```
+  > myArray.push('Cardiff');
+  > myArray;
+  > myArray.push('Bradford','Brighton');
+  > myArray;
+  > ```
+
+  当方法调用完成时，将返回数组的新长度，如果要将新数组的长度存储在变量中：
+
+  > ```
+  > var newLength = myArray.push('Bristol');
+  > myArray;
+  > newLength;
+  > ```
+
+  从数组中删除最后一个元素直接使用`pop()`即可：
+
+  > `myArray.pop();`
+
+  当方法调用完成时，将返回以删除的项目，可以：
+
+  > ```
+  > let removedItem = myArray.pop();
+  > myArray;
+  > removedItem;
+  > ```
+
+  `unshift()`和`shift()`从功能上与`push()`和`pop()`完全相同，区别在于他们作用于胡族的开始而不是结尾：
+
+  使用`unshift()`:
+
+  > ```
+  > myArray.unshift('Edinburgh');
+  > myArray;
+  > ```
+
+  使用`shift()`:
+
+  > ```
+  > let removedItem = myArray.shift();
+  > myArray;
+  > removedItem;
+  > ```
