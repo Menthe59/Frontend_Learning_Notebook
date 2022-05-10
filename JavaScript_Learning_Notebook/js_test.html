@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
         <div onclick="alert('点击弹出测试');">文字测试</div>
     </div>
 
-    <div class="wordsTest">
+    <div class="wordsTest2">
         <div onclick="fun()">文字测试2</div>
     </div>
     <script>
@@ -29,6 +29,88 @@
         }
     </script>
 
+    <!--特殊的if结构-->
+    <div class="wordTest3">
+        <button onclick="branchTest();">特殊的if测试</button>
+    </div>
+    <script>
+        function branchTest() {
+            /**
+             * if(expression){
+             *  //语句1
+             * }
+             * else{
+             *  //语句2
+             * }
+             * js的if语句中表达式expression不仅支持用布尔值还可以是其他值
+             * 当expression是true/非0数值/存在的对象，则会执行"语句1“的部分
+             * 当expression是false/0/null/空字符串，则会执行else的部分
+             */
+            let testPra = 1;
+            if (testPra) {
+                alert("真");
+            }
+        }
+    </script>
+
+    <div class="wordsTest4">
+        <button onclick="equalTest();">相等判断测试</button>
+    </div>
+    <script>
+        function equalTest() {
+            var a = 1;
+            if (a == "1") {
+                alert("此处为不严格相等弹出内容");
+            }
+        }
+        /**
+         * JS的相等判断：
+         * == 不严格的相等判断，不判断数据类型
+         * === 严格的相等判断，还要判断数据类型
+         */
+    </script>
+
+    <div class="wordsTest5">
+        <button onclick="parTest()">测试变量类型</button>
+        <script>
+            function parTest() {
+                var pTest1;
+                var pTest2 = "2";
+                var pTest3 = 3;
+                var pTest4 = new Object();
+                console.log(typeof pTest1);
+                console.log(typeof pTest2);
+                console.log(typeof pTest3);
+                console.log(typeof pTest4);
+                console.log(typeof parTest);
+            }
+        </script>
+    </div>
+
+    <div class="wordTest5">
+        <button onclick="strTest()">字符串方法测试</button>
+        <script>
+            function strTest() {
+                var testStr1 = "thisisteststring."
+                var testStr2 = "thiisanotherstring."
+
+                console.log(typeof testStr1);
+                console.log(typeof testStr2);
+
+                var testStr3 = testStr1.charAt(testStr1);
+                console.log(testStr3);
+
+                var testStr4 = testStr1.charAt(testStr2);
+                console.log(testStr4);
+
+                var testStr5 = testStr1.substr(2, 6);
+                console.log(testStr5);
+
+                var testStr6 = testStr1.substring(2, 6);
+                console.log(testStr6);
+            }
+        </script>
+    </div>
 
 </body>
 
