@@ -112,6 +112,215 @@
         </script>
     </div>
 
+    <div class="functionTest">
+        <button onclick="functionTest()" ;>confirm测试</button>
+        <script>
+            function functionTest() {
+                var flagWds = confirm("你想输入数据吗？");
+
+                if (flagWds) {
+                    alert("你输入了是");
+                } else {
+                    alert("你选择了否");
+                }
+            }
+        </script>
+    </div>
+
+    <div class="functionTest2">
+        <button onclick="functionTest1()" ;>prompt测试</button>
+        <script>
+            function functionTest1() {
+                var flagWds = prompt("请输入数据？");
+
+                if (flagWds) {
+                    alert("你输入了" + flagWds);
+                }
+            }
+        </script>
+    </div>
+
+    <div class="functionTest2">
+        <button onclick="functionTest2()" ;>prompt测试</button>
+        <script>
+            function functionTest2() {
+                var flagWds = prompt("请输入数据？");
+
+                if (flagWds) {
+                    alert("你输入了" + flagWds);
+                }
+            }
+        </script>
+    </div>
+
+    <div class="functionTest3">
+        <button onclick="functionTest3()" ;>document.write()测试</button>
+        <script>
+            document.write("这里是document.write测试的写入文本");
+        </script>
+    </div>
+
+    <div class="functionTest4">
+        <button onclick="functionTest4()">doc.wt与文档流相关</button>
+        <script>
+            function functionTest4() {
+                document.write(doc.wt与文档流相关测试文本);
+            }
+            /**
+             * 文档流：
+             * 1.先打开文档流
+             * 2.读取文本
+             * 3.关闭文档流
+             * 所以点击按钮后会显示文字，按钮消失
+             */
+        </script>
+    </div>
+
+    <div>
+        <button onclick="calAva()">点击开始进行分数录入与平均分计算</button>
+        <script>
+            /**
+             * 1.计算平均分
+             * 2.判断输入类型
+             * 3.输出总人数总分和平均分
+             */
+            function calAva() {
+                document.writeln("成绩录入系统<br>");
+                var stuSco; //分数
+                var sumSco = 0; //总分
+                var arr_Score = new Array();
+                //var numStu;
+                while (confirm("是否还有分数要录入？")) {
+                    sumSco = prompt("请输入分数：", "0");
+                    //判断输入类型,如果是非法值则进行提醒
+                    if (!isNaN(stuSco)) {
+                        arr_Score.push(parseFloat(stuSco));
+                    } else if (isNaN(stuSco)) {
+                        document.write("请输入正确的分数");
+                    }
+                }
+
+                document.writeln("<br>各科成绩如下：<br>");
+                for (var i = 0; i < arr_Score.length; i++) {
+                    sumSco = sumSco + arr_Score[i];
+                    document.writeln(arr_Score[i]);
+                    document.writeln("<br>");
+                }
+                document.writeln("总成绩=" + sumSco);
+                document.writeln("<br/>");
+                document.writeln("平均分=" + sumSco / (arr_Score / length));
+            }
+        </script>
+    </div>
+
+    <!--“js函数是一个像变量一样的东西”-->
+    <div class="functionTest">
+        <button onclick="functionUseTest()">函数测试</button>
+        <button onclick="virRunTest()">可变参数函数测试</button>
+        <!--函数可以像变量一样被打印出来，console(函数名)-->
+        <script>
+            /**
+             *js函数中返回值是非必要的，如果有，直接return即可
+             */
+            function functionTest() {
+                console.log(55555);
+            }
+            /**
+             * 函数可以被作为函数的返回值
+             */
+            function functionReturnTest() {
+                return functionTest;
+            }
+
+            function functionUseTest() {
+                /**
+                 * 这里要注意的是functionReturnTest()代表的仅仅是得到这个函数
+                 * functionReturnTest()()才调用
+                 * 三层嵌套同理，直接套娃
+                 */
+                functionReturnTest()();
+            }
+
+            /**
+             * 函数可以作为参数
+             * 直接在参数位置写上函数名即可
+             */
+
+            /**
+             * 函数可以是匿名的，例如下面两数相加
+             * 在未给这个函数体明明时，会有报错提醒
+             * 这时只需要将这个函数体赋值给某个"变量"即可
+             * 调用时：funcAnonymous(5，6);
+             * 匿名函数还可以在定义的同时进行调用
+             * 以下面的函数为例：
+             * (function (k, l) {
+             *      console.log(k + l);
+             *      })(5,9);
+             * 
+             */
+            var functionAnomyous = function (k, l) {
+                console.log(k + l);
+            }
+
+            /**
+             * js函数支持可变参数
+             * 但并不是指只有参数列表有三个值的时候传两个值也可以直接运行
+             * 而是要在函数体里对这个问题进行判断
+             */
+            function virTest(a, b, c) {
+                if (c) {
+                    console.log(a + b + c);
+                } else {
+                    console.log(a + b);
+                }
+            }
+
+            function virRunTest() {
+                virTest(2, 5, 9);
+                virTest(2, 5);
+            }
+        </script>
+    </div>
+
+    <div>
+        <!--下面对数组进行测试-->
+        <script>
+            /**
+             * 数组声明
+             * --------------
+             * 数组也是一种变量
+             * 第一种声明方法，new Array()并赋给变量，此时默认数组元素个数为0
+             * 想要在声明时对数组元素个数定义，new Array(数组元素个数)
+             * 再声明数组时同时为数组元素赋值new Array(2,3,45,42,54);
+             * 第二种方法不适用new，而是直接使用方括号，写入数组元素
+             */
+            var arr_test = new Array();
+            var arr_test2 = new Array(5);
+            var arr_test3 = new Array(2, 3, 45, 42, 54);
+            var arr_test4 = [2, 3, 45, 42, 54];
+            /**
+             * js数组中也有数组长度的概念，同样使用.length
+             * 下面打印数组长度
+             */
+            console.log("arr_test的长度=" + arr_test.length);
+            console.log("arr_test2的长度=" + arr_test2.length);
+            console.log("arr_test3的长度=" + arr_test3.length);
+            console.log("arr_test4的长度=" + arr_test4.length);
+            for (var t = 0; t < arr_test2.length; t++) {
+                console.log(arr_test2.length[t]);
+                //打印结果为undefined*5
+            }
+            //数组的元素个数可以动态变化，例如:
+            //类似Java中的集合
+            //甚至数组中的各个元素可以不为同一数据类型
+            arr_test3[6] = 89;
+        </script>
+
+    </div>
+
+
+
+
 </body>
 
 </html>
