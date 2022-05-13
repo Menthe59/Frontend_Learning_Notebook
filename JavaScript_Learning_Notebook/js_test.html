@@ -525,6 +525,96 @@
         </script>
     </div>
 
+    <div class="eventTest">
+        <!--
+            事件处理，例如鼠标点击元素，这就是一个事件
+            event 事件本身  鼠标点击事件，这里把事件本身看作一个对象
+            handler  事件处理函数 发生事件后会做相应处理
+            course 事件源
+
+            还有一个不常提的概念：监听
+            类似于Java GUI里的监听，这两个概念相似，其实Java GUI中的与这里的事件处理类似
+        -->
+        <button onclick="eventTest()">这里是事件处理测试按钮</button>
+        <button id="btn2">事件按钮测试</button>
+        <button id="btn3">事件按钮测试2</button>
+        <button id="btn4">事件按钮测试3</button>
+
+        <script>
+            function eventTest() {
+                console.log("我被点击了");
+            }
+            document.getElementById("btn2").onclick = function () {
+                console.log("我是按钮2，我被点击了");
+            }
+            /**
+             * 标准DOM规定，系统会将“事件对象”event作为 第一个参数传递给“事件处理函数”。
+             * 因此“事件处理函数”的写法常常是function handle(event){...}
+             * 所以有以下写法:
+             */
+            document.getElementById("btn3").onclick = function (event) {
+                /**即便漏写了event这个参数，此“事件对象”仍然会被传递过来，不会有问题，因为JavaScript的函数本就支持可变参数。*/
+                console.log("我是按钮3，我被点击了");
+                console.log(event);
+                /**
+                 * 上面这句会打印PointerEvent以及一些坐标等参数
+                 */
+                /**event有一个属性就是事件源,下述代码将会打印<button id="btn3">事件按钮测试2</button>*/
+                console.log(event.srcElement);
+            }
+
+            /**上述结构里的function是一个匿名function，如果想为其命名，可以先var一个变量进行接收
+             * 再调用，
+             */
+
+            var funOrnameTest = function (event) {
+                console.log("我是按钮3，我被点击了");
+                console.log(event);
+                console.log(event.srcElement);
+            }
+
+            document.getElementId("btn4").onclick = funOrnameTest;
+        </script>
+    </div>
+
+    <div class="formTest">
+        <!--
+            表单能发生许多事件
+        -->
+        <form action="xxx.com">
+            用户名：<input name="userName" id="userName" onblur="testUidEle()" onchange="testUidValue()" /><br>
+            密码：<input name="pwd" /><br>
+            <input type="submit" value="提交" /><br>
+        </form>
+
+        <script>
+            /**
+             * 当输入用户名完成后，可能会在框体外进行点击
+             * 这时会对输入的合法性进行判断，发生onblur事件，触发testUidEle
+             * 如下代码展示
+             */
+            function testUidEle() {
+                /**取用户名输入的数值*/
+                var userNam = document.getElementById("userName").value;
+                if (userName == "" || userName == null) {
+                    alert("请输入用户名");
+                }
+            }
+
+            function testUidValue() {
+                console.log("账户名发生了变化");
+            }
+        </script>
+
+    </div>
+
+    <div class="thisTest">
+        <!--
+            this指针，类似与Java
+            指当前元素本身
+            常用于发生事件时
+        -->
+    </div>
 
 
 
