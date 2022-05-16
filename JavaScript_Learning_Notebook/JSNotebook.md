@@ -318,7 +318,57 @@ JS 相关知识和速查手册
 
 ### 08 条件语句和循环
 
-- if...else...语句
+- 基本的 if...else...语法：
+
+  > ```
+  > if (condition) {
+  > code to run if condition is true
+  > } else {
+  >   run some other code instead
+  > }
+  > ```
+
+- 如果需要两个以上的选择或结果，可以使用 `if…else` 连接额外的选择和结果。
+- 比较运算符是用来判断条件语句中的条件的。
+
+  | 比较运算符运算符 |                       作用                       |
+  | :--------------: | :----------------------------------------------: |
+  |  `===` 和 `!==`  |     判断一个值是否严格等于，或不等于另一个。     |
+  |    `<` 和 `>`    |        判断一个值是否小于，或大于另一个。        |
+  |   `<=` 和 `>=`   | 判断一个值是否小于或等于，或者大于或等于另一个。 |
+
+  要注意的是，任何不是 `false` , `undefined` , `null` , `0` , `NaN` 的值，或一个空字符串（''）在作为条件语句进行测试时实际返回 `true` 。
+
+- 如果要测试多个条件，而不想编写嵌套 `if ... else` 语句，可以使用逻辑运算符。  
+  逻辑运算符|作用
+  :-:|:-:
+  `&&` | 逻辑与; 使得并列两个或者更多的表达式成为可能，只有当这些表达式每一个都返回 `true` 时，整个表达式才会返回 `true`.
+  `||` | 逻辑或; 当两个或者更多表达式当中的任何一个返回 `true` 则整个表达式将会返回 true.
+  `!` | 逻辑非; 对一个布尔值取反, 非 `true` 返回 `false`,非 `false` 返回 `true`.
+
+- switch 语句可以以单个表达式/值作为输入，然后查看多个选项，直到找到与该值相匹配的选项，执行与之相关的代码。
+
+  > ```
+  > switch (expression) {
+  > case choice1:
+  >  run this code
+  >  break;
+  >
+  > case choice2:
+  >  run this code instead
+  >  break;
+  >
+  > // include as many cases as you like
+  >
+  > default:
+  >  actually, just run this code
+  > }
+  > ```
+
+- 三元或条件运算符用于测试一个条件，并返回一个值/表达，如果它是`true`，另一个是`false`，这样的情况下可以使用三元运算符，并且可以占用比 `if...else` 块较少的代码块。
+  > ```
+  > ( condition ) ? run this code : run this code instead
+  > ```
 
 ### 09 函数
 
