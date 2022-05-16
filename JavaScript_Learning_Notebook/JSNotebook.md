@@ -54,11 +54,10 @@ JS 相关知识和速查手册
   `var`是函数作用域|`let`是块作用域  
   `var`可以被重定义|`let`不能被重定义
 
-  更多详情参考[🖱🔗](https://blog.csdn.net/xingjia001/article/details/84560872)  
-  \*\* 简化上述内容(尽量使用 let)
+  更多详情参考[🖱🔗](https://blog.csdn.net/xingjia001/article/details/84560872)
 
   - 变量命名时可以使用“小写驼峰命名法”。  
-    \*\* 新建 md 写这个命名方法的 Wiki 介绍
+    第一个单字以小写字母开始；第二个单字的首字母大写，例如：firstName、lastName。
   - 变量有不同类型，用于存储不同类型数据：  
     变量名|存储内容  
     :-:|:-:  
@@ -315,7 +314,7 @@ JS 相关知识和速查手册
   > removedItem;
   > ```
 
-  \*\* array 详解：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
+  array 详解：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 ### 08 条件语句和循环
 
