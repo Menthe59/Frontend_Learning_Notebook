@@ -8,8 +8,14 @@ JS 相关知识和速查手册
 
 ### 02 什么是 JavaScript
 
-- JavaScript 是一种运行在客户端的解释性语言，是一种面向对象语言，可以在网页上实现复杂的功能、交互等。
-- JS 是一种 _解释性_ 语言，下面将阐述解释（interpret）和编译(compile)的区别：在解释型语言中，代码自上而下运行，且实时返回运行结果。代码在由浏览器执行前，不需要将其转化为其他形式。代码将直接以文本格式（text form）被接收和处理。相对的，编译型语言需要先将代码转化（编译）成另一种形式才能运行。比如 C/C++ 先被编译成汇编语言，然后才能由计算机运行，程序将以二进制的格式运行，这些二进制内容是由程序源代码产生的。
+- JavaScript 是一种 _运行在客户端的解释性语言_ ，是一种面向对象语言，可以在网页上实现复杂的功能、交互等。  
+  关于解释和编译：  
+   解释（interpret）|编译(compile)
+  :-:|:-:
+  在解释型语言中，代码自上而下运行，且实时返回运行结果。代码在由浏览器执行前，不需要将其转化为其他形式。代码将直接以文本格式（text form）被接收和处理。|编译型语言需要先将代码转化（编译）成另一种形式才能运行。
+
+  比如 C/C++ 先被编译成汇编语言，然后才能由计算机运行，程序将以二进制的格式运行，这些二进制内容是由程序源代码产生的。
+
 - JavaScript 是 _轻量级解释型_ 语言。浏览器接受到 JavaScript 代码，并以代码自身的文本格式运行。技术上，几乎所有 JavaScript 转换器都运用了一种叫做即时编译（just-in-time compiling）的技术；当 JavaScript 源代码被执行时，它会被编译成二进制的格式，使代码运行速度更快。尽管如此，JavaScript 仍然是一门解释型语言，因为编译过程发生在代码运行中，而非之前。
 
 ### 03 如何使用 JavaScript
@@ -20,7 +26,25 @@ JS 相关知识和速查手册
   | :----------------------------: | :----------------------------------: | :-------------------------------------------------------: |
   | `<script> //Your JS </script>` | `<script src="script.js"> </script>` | `<button onclick="createParagraph()"> Click me </button>` |
 
-  推荐使用内部和外部的 JavaScript，而不是内联 JavaScript。
+  推荐使用内部和外部的 JavaScript，而不是内联 JavaScript，这种方式不易维护。
+
+- JavaScript 代码通常会按照从上往下的顺序执行，避免出现函数调用在对象顶以前这种问题，这种情况下会出现 “对象不存在” 的报错信息，不能添加事件监听器。在使用“内部”、“外部”的 JS 时会有这种隐患，这时可以使用事件监听器避免发生错误。
+
+  > ```
+  > document.addEventListener("DOMContentLoaded",function(){
+  >   . . .
+  >   });
+  > ```
+
+  这个事件监听器监听浏览器的"DOMContentLoaded"事件，即 HTML 文档体记载、解释完毕事件。事件触发时将调用". . . "初的代码，从而避免错误发生。
+
+  还有异步(async)属性，可以用来解决类似问题，例如告知浏览器在遇到`<script>`元素时不要中断后续 HTML 内容的加载。
+
+  > ```
+  > <script src="script.js" async></script>
+  > ```
+
+  要注意的是 “外部”示例中 async 属性可以解决调用顺序问题，因此无需使用 DOMContentLoaded 事件。而 async 只能用于外部脚本，因此不适用于“内部”示例。
 
 ### 04 第一个 JS 程序以及如何查找并解决错误
 
@@ -366,9 +390,72 @@ JS 相关知识和速查手册
   > ```
 
 - 三元或条件运算符用于测试一个条件，并返回一个值/表达，如果它是`true`，另一个是`false`，这样的情况下可以使用三元运算符，并且可以占用比 `if...else` 块较少的代码块。
+
   > ```
   > ( condition ) ? run this code : run this code instead
   > ```
+
+- 一个简单的日历
+
+  > ```
+  > var select = document.querySelector('select');
+  > var list = document.querySelector('ul');
+  > var h1 = document.querySelector('h1');
+  >
+  > select.onchange = function() {
+  > var choice = select.value;
+  > var days = 31;
+  > if(choice === 'February') {
+  > days = 28;
+  > } else if(choice === 'April' || choice === 'June' || choice === >'September'|>| choice === 'November') {
+  > days = 30;
+  > }
+  >
+  > createCalendar(days, choice);
+  > }
+  >
+  > function createCalendar(days, choice) {
+  > list.innerHTML = '';
+  > h1.textContent = choice;
+  > for(var i = 1; i <= days; i++) {
+  > var listItem = document.createElement('li');
+  > listItem.textContent = i;
+  > list.appendChild(listItem);
+  > }
+  > }
+  >
+  > createCalendar(31,'January');
+  >
+  > ```
+
+- 一个循环通常需要一个或多个条件：  
+   一个开始条件，它被初始化为一个特定的值，是循环的起点；
+  一个结束条件，是循环停止的标准；
+  一个迭代器，通常在每个连续循环上递增少量计数器直到达到退出条件。  
+  下面展示 for 循环的语法：
+
+  > ```
+  > for(initializer;exit-condition;final-expression){
+  >   //code to run
+  > }
+  > ```
+
+  一个遍历列表的例子：
+
+  > ```
+  > var cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
+  > var info = 'My cats are called ';
+  > var para = document.querySelector('p');
+  >
+  > for (var i = 0; i < cats.length; i++) {
+  > info += cats[i] + ', ';
+  > }
+  >
+  > para.textContent = info;
+  > ```
+
+- 当要在所有迭代完成之前退出循环，可以使用 break 语句。break 语句会立即退出 switch 语句并使浏览器移动到跟随它的任何代码。  
+  continue 语句类似 break，但并不是完全跳出循环，而是跳出当前循环而执行下一个循环。
 
 ### 09 函数
 
