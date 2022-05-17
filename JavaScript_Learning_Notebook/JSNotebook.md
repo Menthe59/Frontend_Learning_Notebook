@@ -457,7 +457,65 @@ JS 相关知识和速查手册
 - 当要在所有迭代完成之前退出循环，可以使用 break 语句。break 语句会立即退出 switch 语句并使浏览器移动到跟随它的任何代码。  
   continue 语句类似 break，但并不是完全跳出循环，而是跳出当前循环而执行下一个循环。
 
+- while 和 do ... while 语句也可以用来进行循环操作：  
+   while 循环的语法如下：
+
+  > ```
+  > initializer
+  > while (exit-condition) {
+  >  // code to run
+  >
+  >  final-expression
+  > }
+  > ```
+
+  使用 while 重写 for 循环的遍历列表示例：
+
+  > ```
+  > var i = 0;
+  >
+  > while (i < cats.length) {
+  >  if (i === cats.length - 1) {
+  >    info += 'and ' + cats[i] + '.';
+  >  } else {
+  >    info += cats[i] + ', ';
+  > }
+  >
+  >  i++;
+  > }
+  > ```
+
+  do...while 循环类似于 while，不同的是在 while 后提供了中止条件；
+
+  > ```
+  > initializer
+  > do {
+  >  // code to run
+  >  final-expression
+  > } while (exit-condition)
+  > ```
+
+  使用 do...while 重写 for 循环的遍历列表示例：
+
+  > ```
+  > var i = 0;
+  >
+  > do {
+  >  if (i === cats.length - 1) {
+  >    info += 'and ' + cats[i] + '.';
+  > } else {
+  >  info += cats[i] + ', ';
+  > }
+  >
+  > i++;
+  > } while (i < cats.length);
+  > ```
+
 ### 09 函数
+
+- 函数可以在一个代码块中存储一段用于处理单任务的代码，并在任何需要的时候用一个简短的命令来调用，而不是把相同的代码写很多次。
+
+-
 
 ### 10 事件
 
