@@ -515,8 +515,161 @@ JS 相关知识和速查手册
 
 - 函数可以在一个代码块中存储一段用于处理单任务的代码，并在任何需要的时候用一个简短的命令来调用，而不是把相同的代码写很多次。
 
--
+- JS 有许多 _内置函数_ ，这些函数被定义为浏览器 API 的一部分，建立在默认语言之上以提供更多功能。
+
+- 通常称函数是对象方法的一部分，这里要提到的是内置函数并不是函数而是方法，这二者可替换程度很高。二者的区别在于：方法是在对象内定义的函数。
+
+- 详见[🖱🔗](https://developer.mozilla.org/zh-CN/docs/learn/JavaScript/Building_blocks/Functions)。  
+  [🖱🔗](https://developer.mozilla.org/zh-CN/docs/learn/JavaScript/Building_blocks/Build_your_own_function)。
+  [🖱🔗](https://developer.mozilla.org/zh-CN/docs/learn/JavaScript/Building_blocks/Return_values)。
 
 ### 10 事件
 
-- 事件
+- 事件是系统会在事件出现时产生或触发某种信号，并且会提供一个自动加载某种动作列如运行一些代码的机制。几个可能发生的不同事件：  
+   ·用户在某个元素上点击鼠标或悬停光标；  
+   ·用户在键盘中按下某个按键；  
+   ·用户调整浏览器的大小或者关闭浏览器窗口；  
+   ·一个网页停止加载；  
+   ·提交表单；  
+   ·播放、暂停、关闭视频；  
+   ·发生错误。  
+   事件参考列表[🖱🔗](https://developer.mozilla.org/zh-CN/docs/Web/Events)。
+
+- 每个可用事件都会有一个事件处理器，也就是事件触发时会运行的代码块，当定义了一个用来回应事件被触发的代码块的时候，就说注册了一个事件处理器，有时也被称为事件监听器。严格来说这块代码既监听也处理事件。监听器留意事件是否发生，然后处理器就是对事件发生做出的回应。  
+  一个简单的例子：页面中只有一个 button，按下背景会变成随机的一种颜色：
+
+  > ```
+  > <button>Change color</button>
+  > ```
+
+  JS 部分：
+
+  > ```
+  > const btn = document.querySelector('button');
+  >
+  > function random(number){
+  >   return Math.floor(Math.random()*(number+1));
+  > }
+  >
+  > btn.onclick=function(){
+  > const rndCol='rgb('+random(255)+','+random(255)+','+random(255)+')';
+  > document.body.style.backgroundColor=rndCol;
+  > }
+  > ```
+
+  使用 `btn` 变量存储 `button`，并使用了`Document.querySelector()` 函数,同时定义了一个返回随机数字的函数。代码第三部分就是事件处理器。`btn`变量指向 `button` 元素，在 `button` 这种对象上可触发一系列的事件，因此也就可以使用事件处理器。我们通过将一个匿名函数（这个赋值函数包括生成随机色并赋值给背景色的代码）赋值给“点击”事件处理器参数，监听“点击”这个事件。只要点击事件在`<button>`元素上触发，该段代码就会被执行。
+
+### 11 JavaScript 对象基础
+
+- 对象是一个包含相关数据和方法的集合，通常由一些变量和函数组成，我们称之为对象里面的属性和方法。  
+  例如，创建一个空对象：
+
+  > ```
+  > var person = {};
+  > ```
+
+  这时在控制台输入 person 会显示：
+
+  > ```
+  > [object Object]
+  >
+  > ```
+
+  更新这个对象，为这个对象添加内容：
+
+  > ```
+  > var person={
+  >   name:['Bob','Smith'],
+  >   age:32,
+  >   gender:'male',
+  >   interests:['music','skiing'],
+  >   bio:function(){
+  >    alert(this.name[0]+' '+this.name[1]+'is'+this.age+'years old. He likes '
+  >    + this.interests[0]+'and'+this.interests[1]+'.');
+  > },
+  > greeting:function(){
+  > alert('Hi! I\'m' + this.name[0]+'.');
+  > }
+  > };
+  > ```
+
+  在控制台输入以下内容，会从对象里得到一些数据和功能：
+
+  > ```
+  > person.name[0]
+  > person.age
+  > person.interests[1]
+  > person.bio()
+  > person.greeting()
+  > ```
+
+  可以看到，一个对象由许多的成员组成，每一个成员都拥有一个名字（像上面的`name`、`age`），和一个值（如`['Bob', 'Smith']`、`32`）。每一个名字/值（`name/value`）对被逗号分隔开，并且名字和值之间由冒号（:）分隔，语法规则如下所示：
+
+  > ```
+  > var objectName = {
+  > member1Name : member1Value,
+  > member2Name : member2Value,
+  > member3Name : member3Value
+  >  }
+  > ```
+
+  对象成员的值可以是任意的，`person`对象里有字符串，数字，两个数组，两个函数。前 4 个成员是资料项目，被称为对象的属性(`property`)，后两个成员是函数，允许对象对资料做一些操作，被称为对象的方法(`method`)，一个如上所示的对象被称之为对象的字面量(`literal`)，即手动的写出对象的内容来创建一个对象，不同于从类实例化一个对象。
+
+  访问对象中的属性有两种方式：
+
+  > ```
+  > <!--点表示法-->
+  > person.age
+  > person.name.first
+  > ```
+
+  > ```
+  > <!--括号表示法-->
+  > person['age']
+  > person['name']['first']
+  > ```
+
+  设置对象成员/更新成员变量：
+
+  > ```
+  > person.age=45
+  > person['name']['last']='Cratchit'
+  > ```
+
+  创建新成员：
+
+  > ```
+  > person['eyes']='hazel'
+  > person.farewell=function(){
+  >   alert("Bye everybody!")
+  > }
+  > ```
+
+  还可以动态的去设置成员的名字。比如，我们想让用户能够在他们的数据里存储自己定义的值类型，通过两个 input 框来输入成员的名字和值，通过以下代码获取用户输入的值：
+
+  > ```
+  > var myDataName = nameInput.value
+  > var myDataValue = nameValue.value
+  > ```
+
+  可以这样把这个新的成员的名字和值加到 person 对象里：
+
+  > ```
+  > person[myDataName] = myDataValue
+  > ```
+
+  为了测试这个功能，可以在 person 对象的右花括号前面添加的下面的呢容：
+
+  > ```
+  > var myDataName = 'height'
+  > var myDataValue = '1.75m'
+  > person[myDataName] = myDataValue
+  > ```
+
+  可以输入一下代码进行测试：
+
+  > ```
+  > person.height
+  > ```
+
+  这是使用点表示法无法做到的，点表示法只能接受字面量的成员的名字，不接受变量作为名字。
