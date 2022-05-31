@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+</head>
+<body>
+
+<!--这里即为view层（变成了template模板）-->
+<!--创建div并命名便于绑定-->
+<div id="app">
+    <!--拿data message的数据-->
+    {{message}}
+</div>
+
+<div id="app2">
+    <span v-bind:title="message">
+        鼠标悬停几秒以查看此处动态绑定的提示信息。
+    </span>
+</div>
+
+<div id="app3">
+    {{message}}
+</div>
+
+<!--1.导入vue.js-->
+<!--此链接存在无法连接的问题
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+-->
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+
+<!--2.创建vue对象-->
+<script>
+    <!--创建vue对象-->
+    var vm = new Vue({
+        <!--el元素绑定#app这个div:-->
+        el: '#app',
+        <!--放data数据-->
+        <!--model层：数据-->
+        data: {
+            message: 'Hello Vue!'
+        }
+        <!--“双向绑定”View Model，检测可在浏览器端f12，在控制台内vm.message="test context"-->
+        <!--会在前端直接显示test context-->
+    })
+
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            message: '页面加载于 ' + new Date().toLocaleString()
+        }
+    })
+
+    var vm3 = new Vue({
+        el: '#app3',
+        data: {
+            message: '消息测试'
+        }
+    })
+</script>
+
+
+</body>
+</html>
