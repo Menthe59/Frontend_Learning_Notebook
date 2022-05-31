@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Test</title>
+</head>
+<body>
+
+<div id="event_test">
+    <!--通过v-on绑定事件-->
+    <button v-on:click="sayHi">click</button>
+</div>
+
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#event_test',
+        data:{
+
+        },
+        methods: {
+            //方法必须定义在Vue的Method对象中
+            //方法也是键值对，键为方法名，值为方法体
+            sayHi: function(){
+                alert('hi');
+                //或者alert(this.message);
+            }
+        }
+    })
+</script>
+</body>
+</html>
