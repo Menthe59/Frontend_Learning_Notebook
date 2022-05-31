@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Judgement Test</title>
+</head>
+<body>
+
+<div id="jj_if_else">
+    <h3>测试if-else</h3>
+    <!--这里默认值是true，可以不写-->
+    <h3 v-if="ok">Yes</h3>
+    <h3 v-else>No</h3>
+</div>
+
+<div id="jj_else_if">
+    <h3>测试else-if</h3>
+    <h3 v-if="type==='A'">Yes</h3>
+    <h3 v-else-if="type==='B'">No</h3>
+    <h3 v-else-if="type==='C'">Test Option</h3>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+
+    var vm = new Vue({
+        el:'#jj_if',
+        data:{
+            ok: false
+        }
+    })
+
+    var vm2 = new Vue({
+        el:'#jj_else_if',
+        data:{
+            type:'A'
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

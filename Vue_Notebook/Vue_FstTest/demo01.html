@@ -17,10 +17,8 @@
     <span v-bind:title="message">
         鼠标悬停几秒以查看此处动态绑定的提示信息。
     </span>
-</div>
-
-<div id="app3">
-    {{message}}
+    <!--这里用span标签是因为span的title属性是会悬浮在标签上的-->
+    <!--这里的v-bind绑定等效于{{}}-->
 </div>
 
 <!--1.导入vue.js-->
@@ -51,12 +49,6 @@
         }
     })
 
-    var vm3 = new Vue({
-        el: '#app3',
-        data: {
-            message: '消息测试'
-        }
-    })
 </script>
 
 
