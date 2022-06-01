@@ -127,12 +127,102 @@ Vue 的相关内容和速查手册
 
 - 判断：v-if、v-else、v-else-if
 
+  view 层：
+
+  > ```
+  > <div id="app">
+  >      <h3 v-if="type===A">Yes</h3>
+  >      <h3 v-else-if="type===B">No</h3>
+  >      <h3 v-else-if="type===C">Test Option</h3>
+  > </div>
+  > ```
+
+  ViewModel 层：
+
+  > ```
+  > var vm2 = new Vue({
+  >     el:'#app',
+  >     data:{
+  >         type:'A'
+  >         }
+  >  })
+  > ```
+
 - 循环：v-for
+
+  view 层：
+
+  > ```
+  > <!--类似foreach，循环输出数组的每一项-->
+  > <div id="app">
+  >      <div v-for="item in items">
+  >          ---{{item.key}}---{{item.message}}---{{item.name}}---
+  >      </div>
+  > </div>
+  > ```
+
+  model 层：
+
+  > ```
+  > <!--创建数组为元素对象-->
+  > var vmdata={
+  >     items : [
+  >         {message : "First content",name : "name1",key : "key1"}
+  >         {message : "Second content",name : "name2",key : "key2"}
+  >         {message : "Third content",name : "name3",key : "key3"}
+  >         ]
+  >  }
+  > ```
+
+  ViewModel 层：
+
+  > ```
+  > var vm = new Vue({
+  >    el:'app',
+  >    data:vmdata,
+  > })
+  > ```
 
 - 监听事件：v-on
 
-- 表单双向绑定、组件
+  以绑定 click 事件为例：
+
+  view 层：
+
+  > ```
+  > <div id="app">
+  >      <button v-on:click="sayHi">点击</button>
+  > </div>
+  > ```
+
+  ViewModel 层：
+
+  > ```
+  > var vm = new Vue({
+  >    el:'#app',
+  >    data:{
+  >        massage:"hello world"
+  >    },
+  >    methods:{
+  >    sayHi:function(event){
+  >         alert(this.message);
+  >         //this在方法里指向当前vue实例
+  >         }
+  >     }
+  >  });
+  > ```
+
+- 表单双向绑定
+
+  Vue 是一个 MVVM 框架，即 _数据双向绑定_ ，当数据发生变化的时候，视图也就发生变化，当视图发生变化数据也会跟着同步变化。这也算是 Vue.js 的精髓之处了。
+  值得注意的是，这里说的数据双向绑定，一定是对于 UI 控件来说的非 UI 控件不会涉及到数据双向绑定。单向数据绑定是使用状态管理工具的前提。如果使用 Vuex，那么数据流也是单向的，这时就会和双向数据绑定冲突。
+
+  可以用 v-model 指令在表单、及元素上创建双向数据绑定,它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 v-model 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。要注意的是，v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值而总是将 Vue 实例的数据作为数据来源，应该通过 JavaScript 在组件的 data 选项中声明初始值。
 
 ### 05 组件
+
+-
+
+### 06 网络通信
 
 -
