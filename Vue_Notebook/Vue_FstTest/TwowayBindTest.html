@@ -7,16 +7,36 @@
 <body>
 
 <div id="Twoway_bind_test">
-    请输入数据：<input type="text" v-model="message"> {{message}}
+    <br>
+    <!--input radio 使用v-model的时候会将value的值传给v-model绑定的model层对象-->
+    <input type="radio" name="sex" value="男" v-model="radioChecked"> 男
+    <input type="radio" name="sex" value="女" v-model="radioChecked"> 女
+    radio checked:{{radioChecked}}
+    <hr>
+
+    <!--select标准示例，注意第一项disable-->
+    <select v-model="selectValue">
+        <option value="" disabled>---请选择---</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+    </select>
+    slecet value:{{selectValue}}
 </div>
 
 <script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
 <script>
+
+    var vmdata={
+        message:"Test Message",
+        radioChecked:"",
+        selectValue:"",
+    }
+
     var vm = new Vue({
         el:'#Twoway_bind_test',
-        data: {
-            message: "test content"
-        }
+        data: vmdata,
     })
 </script>
 
