@@ -3,15 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Axios Test</title>
+
+    <!--使用v-cloak解决闪烁问题-->
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 
+<div id="axiosTest">
+    <div>{{info.name}}</div>
+    <div>{{info.address.street}}</div>
+    <!--使用v-bind将href属性与Vue实例中的数据进行绑定-->
+    <a v-bind:href="info.url">{{info.url}}</a>
+</div>
 
 <script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
 <script src="https://cdn.staticfile.org/axios/0.21.1/axios.min.js"></script>
 <script>
     var vm = new Vue({
-    })
+        el:"#axiosTest",
+        data(){
+            return{
+                //请求的返回参数格式必须和json格式一致
+                info:{
+                    name: null,
+                    adress:{
+                        city: null,
+                        street: null,
+                        country: null,
+                    },
+                    url:null,
+                }
+            }
+        },
+        mounted(){
+            //使用axios发送get请求并自动将数据封装进Vue实例的数据对象中
+            //链式编程
+            axios.get('../data.json').then(response=>{this.info=response.data});
+        }
+    });
 </script>
 </body>
 </html>
