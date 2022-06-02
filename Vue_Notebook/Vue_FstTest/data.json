@@ -1,0 +1,25 @@
+{
+  "name": "Test content",
+  "url": "https://github.com/axios/axios",
+  "page": 1,
+  "isNonProfit": true,
+  "address": {
+    "street": "含光门",
+    "city": "陕西西安",
+    "country": "中国"
+  },
+  "links": [
+    {
+      "name": "bilibili",
+      "url": "https://bilibili.com"
+    },
+    {
+      "name": "Axios中文文档",
+      "url": "http://www.axios-js.com/"
+    },
+    {
+      "name": "百度",
+      "url": "https://www.baidu.com/"
+    }
+  ]
+}
