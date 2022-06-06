@@ -12,8 +12,12 @@
         将model层的数据 data_todo_header:'testData'传递给视图层todo_header
         将model层的数据 data_todo_item:['A','B','C']传递给视图todo_body
         -->
-        <todo_header slot="todo_header" :prop_todo_header="data_todo_header"></todo_header>
-        <todo_body slot="todo_body" v-for="todo_item in data_todo_item" :prop_todo_name="todo_item"></todo_body>
+        <todo_header slot="todo_header" v-bind:prop_todo_header="data_todo_header"></todo_header>
+        <todo_body slot="todo_body" v-for="(todo_item,todo_index) in data_todo_item"
+                   v-bind:prop_todo_name="todo_item"
+                   v-bind:prop_todo_index="todo_index"
+                   v-on:inner_del_emit="out_del(todo_index)">
+        </todo_body>
     </todo>
 </div>
 
@@ -36,20 +40,34 @@
     });
     Vue.component("todo_body",{
         //属性prop_todo_name用于数据交互
-        props:['prop_todo_name'],
-        template: '<li>{{prop_todo_name}}</li>'
+        props:['prop_todo_name','prop_todo_index'],
+        //只能绑定当前组件的方法
+        template: '<li>{{prop_todo_index}}  ---  {{prop_todo_name}}   <button v-on:click="inner_del">删除</button>    </li>',
+        methods:{
+            inner_del: function (){
+                //自定义事件分发
+                //组件删除Vue实例中的数据，通过事件分发，this.$emit('自定义事件名',参数),
+                this.$emit("inner_del_emit");
+            }
+        }
     });
         //props属性命名不要使用驼峰命名法，否则参数无法传递
 
     //model层
     var vmdata={
         data_todo_header:'testData',
-        data_todo_item:['A','B','C'],
+        data_todo_item:['A','B','C']
     }
+
     //ViewModel层
     var vm = new Vue({
         el:'#slot_test',
         data:vmdata,
+        methods:{
+            out_del:function (index){
+                vm.data_todo_item.splice(index,1);
+            }
+        }
     });
 
 </script>
