@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot Test</title>
+</head>
+<body>
+
+<div id="slot_test">
+    <todo>
+        <!--
+        将model层的数据 data_todo_header:'testData'传递给视图层todo_header
+        将model层的数据 data_todo_item:['A','B','C']传递给视图todo_body
+        -->
+        <todo_header slot="todo_header" :prop_todo_header="data_todo_header"></todo_header>
+        <todo_body slot="todo_body" v-for="todo_item in data_todo_item" :prop_todo_name="todo_item"></todo_body>
+    </todo>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+
+    Vue.component("todo",{
+        template: '<div>\
+                    <slot name="todo_header"></slot>\
+                    <ul>\
+                    <slot name="todo_body"></slot>\
+                    </ul>\
+                <div>'
+    });
+
+    Vue.component("todo_header",{
+        //属性prop_todo_header用于数据交互
+        props:['prop_todo_header'],
+        template: '<div>{{prop_todo_header}}</div>'
+    });
+    Vue.component("todo_body",{
+        //属性prop_todo_name用于数据交互
+        props:['prop_todo_name'],
+        template: '<li>{{prop_todo_name}}</li>'
+    });
+        //props属性命名不要使用驼峰命名法，否则参数无法传递
+
+    //model层
+    var vmdata={
+        data_todo_header:'testData',
+        data_todo_item:['A','B','C'],
+    }
+    //ViewModel层
+    var vm = new Vue({
+        el:'#slot_test',
+        data:vmdata,
+    });
+
+</script>
+</body>
+</html>
