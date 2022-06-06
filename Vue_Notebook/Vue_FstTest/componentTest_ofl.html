@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件构建测试</title>
+</head>
+<body>
+
+<div id="todoTest">
+    <ol>
+        <todo-item
+            v-for="item in groceryList"
+            v-bind:todo="item"
+            v-bind:key="item.id">
+        </todo-item>
+    </ol>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+
+    Vue.component('todo-item',{
+        // to do-item 现组件接收一个“props”类似于一个自定义指令，这个prop名为todo
+        props:['todo'],
+        template:'<li>{{todo.text}}</li>'
+    })
+
+    var app = new Vue({
+        el:"#todoTest",
+        data:{
+            groceryList:[
+                {id:0,text:'蔬菜'},
+                {id:1,text:'水果'},
+                {id:2,text:'生鲜'},
+                {id:3,text:'零食'},
+                {id:4,text:'饮品'},
+            ]
+        }
+    })
+</script>
+</body>
+</html>
