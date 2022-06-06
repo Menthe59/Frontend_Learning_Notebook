@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>processing user input</title>
+</head>
+<body>
+
+<div id="input_process">
+    <p>{{   message }}</p>
+    <!--使用v-on指令添加一个事件监听器，通过它调用在Vue实例中定义的方法-->
+    <button v-on:click="reverseMessage">消息反转</button>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+    var inppro = new Vue({
+        el:'#input_process',
+        data:{
+            message:"Hello Vue"
+        },
+        methods:{
+            reverseMessage:function (){
+                //在这个方法中实现了更新应用状态，但没有触碰DOM，所有DOM操作都是Vue来处理的
+                //编写代码只需要关注逻辑层面即可
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
