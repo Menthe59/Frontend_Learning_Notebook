@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>creat app</title>
+</head>
+<body>
+
+
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+    //通过createApp函数创建一个新的应用实例
+    const app = Vue.createApp({
+        //这个应用实例是用来在应用中注册“全局”组件的
+    })
+    app.component('SearchInput',SearchInputComponent)
+    app.directive('focus',FocusDirective)
+    app.use(LocalePlugin)
+</script>
+
+</body>
+</html>
