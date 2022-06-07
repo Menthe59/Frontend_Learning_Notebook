@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定测试</title>
+</head>
+<body>
+
+<div id="bindtoway">
+    <p>{{   message    }}</p>
+    <input v-model="message">
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.5.21/vue.min.js"></script>
+<script>
+    var btoway = new Vue({
+        el:'#bindtoway',
+        data:{
+            message:'Hello Vue'
+        }
+    })
+</script>
+
+</body>
+</html>
